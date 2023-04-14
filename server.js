@@ -3,7 +3,7 @@ const app = express();
 
 // Định nghĩa tuyến đường cho trang chủ
 app.get('/', (req, res) => {
-  res.send('Hello, world!');
+  res.send('Hello world!');
 });
 
 app.listen(3000, () => {
