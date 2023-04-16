@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const app = express();
 
 // Kết nối với cơ sở dữ liệu MongoDB
-mongoose.connect('mongodb+srv://MinhChis19:<password>@cluster0.xqsjeav.mongodb.net/?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://MinhChis19:<password>@cluster0.xqsjeav.mongodb.net/planB?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => {
@@ -24,6 +24,6 @@ app.get('/', (req, res) => {
   res.send('Hello world!');
 });
 
-app.listen(3000, () => {
-  console.log('Server is listening on port 3000');
+app.listen(8000, () => {
+  console.log('Server is listening on port 8000');
 });
