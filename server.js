@@ -1,7 +1,25 @@
 const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+
 const app = express();
 
-// Định nghĩa tuyến đường cho trang chủ
+// Kết nối với cơ sở dữ liệu MongoDB
+mongoose.connect('mongodb+srv://MinhChis19:<password>@cluster0.xqsjeav.mongodb.net/?retryWrites=true&w=majority', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(() => {
+  console.log("Connected to database!");
+}).catch(err => {
+  console.log("Connection failed: " + err);
+});
+
+// Khai báo các Middleware
+app.use(cors());
+app.use(bodyParser.json());
+
+// Khai báo các Route
 app.get('/', (req, res) => {
   res.send('Hello world!');
 });
