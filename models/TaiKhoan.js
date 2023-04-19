@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const uniqueValidator = require('mongoose-unique-validator');
 
 const TaiKhoanSchema = mongoose.Schema({
     TENTAIKHOAN: {
@@ -12,9 +13,14 @@ const TaiKhoanSchema = mongoose.Schema({
     },
     PHANQUYEN: {
         type: String,
-        require: true
+        required: true
+    },
+    MANV: {
+        type: String,
+        ref:'NhanVien'
     }
 }, { timestamps: true })
 
+TaiKhoanSchema.plugin(uniqueValidator);
 const TaiKhoan = mongoose.model('TaiKhoan', TaiKhoanSchema)
 module.exports = TaiKhoan

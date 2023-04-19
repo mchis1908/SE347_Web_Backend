@@ -1,63 +1,34 @@
 const mongoose = require('mongoose')
+const uniqueValidator = require('mongoose-unique-validator');
 
 const SanPhamSchema = mongoose.Schema({
-    MASANPHAM: {
-        type:mongoose.Schema.Types.ObjectId,
-        required:true,
-        unique: true
-    },
-    BARCODESANPHAM: {
-        type: String,
-        required: true,
-        unique: true,
-    },
-    KHACHHANG: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref:'KhachHang',
-        required: true
-    },
-    MAHOADON: {
-        type:mongoose.Schema.Types.ObjectId,
-        ref:'HoaDon',
+    TENSANPHAM: {
+        type:String,
         required:true
     },
-    BARCODEHOADON: {
-        type: String,
-        ref:'HoaDon',
-        required: true,
-        unique: true,
-    },
-    SOLUONG: {
-        type: Number,
-        required: true,
-        default:0
+    MAHOADON: {
+        type:String,
+        required:true
     },
     LOAI: {
         type: String,
-        required: true,
+        required: true
     },
     TRANGTHAI: {
         type: String,
-        required: true,
+        required: true
     },
     HINHANH: {
         type: String,
-        required: true,
+        required: true
+    },
+    GIA: {
+        type: Number,
+        required: true
     },
     
 });
 
-SanPhamSchema.pre('save', function (next) {
-    // Sử dụng JsBarcode để tạo mã vạch từ số hóa đơn
-    JsBarcode(this.MASANPHAM, {
-      format: "EAN13",
-      displayValue: false
-    }, (err, url) => {
-      if (err) return next(err);
-      this.BARCODESANPHAM = url;
-      next();
-    });
-  });
-
+SanPhamSchema.plugin(uniqueValidator);
 const SanPham = mongoose.model('SanPham',SanPhamSchema);
 module.exports = SanPham;

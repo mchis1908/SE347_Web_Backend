@@ -1,21 +1,22 @@
 const mongoose = require('mongoose')
+const uniqueValidator = require('mongoose-unique-validator');
 
 const KhachHangSchema = mongoose.Schema({
-    MAKH: {
-        type:mongoose.Schema.Types.ObjectId,
-        required:true
-    },
     HOTEN: {
         type: String,
         required: true
     },
     SDT: {
         type: String,
+        unique: true,
         required: true
+    },
+    EMAIL: {
+        type: String,
     },
     LANDENGANNHAT: {
         type: String,
-        required: true
+        default: ''
     },
     SODONKYGUI: {
         type: Number,
@@ -23,5 +24,6 @@ const KhachHangSchema = mongoose.Schema({
     },
 })
 
+KhachHangSchema.plugin(uniqueValidator);
 const KhachHang = mongoose.model('KhachHang',KhachHangSchema);
 module.exports = KhachHang;

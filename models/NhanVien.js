@@ -1,21 +1,18 @@
 const mongoose = require('mongoose')
+const uniqueValidator = require('mongoose-unique-validator');
 
 const NhanVienSchema = mongoose.Schema({
-    MANV: {
-        type:mongoose.Schema.Types.ObjectId,
-        required:true
-    },
     HOTEN: {
         type: String,
         required: true
     },
     SDT: {
         type: String,
+        unique: true,
         required: true
     },
     EMAIL: {
         type: String,
-        required: true
     },
     LUONGCOBAN: {
         type: Number,
@@ -27,5 +24,6 @@ const NhanVienSchema = mongoose.Schema({
     },
 })
 
+NhanVienSchema.plugin(uniqueValidator);
 const NhanVien = mongoose.model('NhanVien',NhanVienSchema);
 module.exports = NhanVien;
