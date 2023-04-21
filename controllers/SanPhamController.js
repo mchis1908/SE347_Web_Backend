@@ -26,9 +26,15 @@ const SanPham = {
             res.status(500).json(error)
         }
     },
+    GetSanPhambyMaSanPham: async (req, res) => {
+        const { maSP } = req.params;
+        const data = await SanPhamModel.findOne({ MASANPHAM: maSP })
+        res.send(data)
+    },
     UpdateSanPham: async (req, res) => {
+        const { maSP } = req.params;
         try {
-            const SP = await SanPhamModel.findByIdAndUpdate(req.params.id, req.body);
+            const SP = await SanPhamModel.findOneAndUpdate({ MASANPHAM: maSP }, req.body);
             await SP.save();
             res.send(SP);
         } catch (error) {
@@ -52,6 +58,19 @@ const SanPham = {
             res.status(200).send();
         } catch (error) {
             res.status(500).send(error);
+        }
+    },
+    DeleteSanPhambymaHD: async (req, res) => {
+        const {maHD} = req.params;
+        try {
+          const sanPham = await SanPhamModel.deleteMany({ MAHOADON: maHD });
+          if (!sanPham) {
+            return res.status(404).json({ message: 'Không tìm thấy sản phẩm' });
+          }
+          return res.status(200).json({ message: 'Xóa sản phẩm thành công' });
+        } catch (err) {
+          console.error(err.message);
+          return res.status(500).json({ message: 'Lỗi server' });
         }
     },
     SearchSanPham: async (req, res) => {

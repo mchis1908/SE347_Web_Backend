@@ -4,9 +4,11 @@ const upload = require("../models/middleware/uploadImage");
 
 router.post('/themsanpham', upload.single("HINHANH"), SanPhamController.DangKySanPham);
 router.get('/getsanpham', SanPhamController.GetSanPham)
+router.get('/getsanpham/:maSP', SanPhamController.GetSanPhambyMaSanPham)
 router.get('/getaproduct/:maHD', SanPhamController.GetaProduct)
 router.delete('/deletesanpham/:id', SanPhamController.DeleteSanPham)
-router.patch('/updatesanpham/:id', SanPhamController.UpdateSanPham)
+router.delete('/deletesanphambymahd/:maHD', SanPhamController.DeleteSanPhambymaHD)
+router.patch('/updatesanpham/:maSP', SanPhamController.UpdateSanPham)
 router.patch('/updatesanphambymahd/:maHD', SanPhamController.UpdateSanPhambyMaHD)
 router.get('/search/:key', SanPhamController.SearchSanPham);
 

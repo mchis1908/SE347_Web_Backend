@@ -2,6 +2,11 @@ const mongoose = require('mongoose')
 const uniqueValidator = require('mongoose-unique-validator');
 
 const SanPhamSchema = mongoose.Schema({
+    MASANPHAM: {
+        type: String,
+        unique: true,
+        required: true
+    },
     TENSANPHAM: {
         type:String,
         required:true
