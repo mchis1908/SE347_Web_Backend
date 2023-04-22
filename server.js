@@ -37,7 +37,7 @@ app.use("/v1/luong", LuongRoute);
 app.use("/v1/nhanvien", NhanVienRoute);
 app.use("/v1/sanpham", SanPhamRoute);
 app.use("/v1/taikhoan", TaiKhoanRoute);
-// app.use("/v1/thamso", ThamSoRoute);
+app.use("/v1/thamso", ThamSoRoute);
 
 app.listen(8000, () => {
   console.log('Server is listening on port 8000');

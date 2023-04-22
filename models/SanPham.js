@@ -11,7 +11,11 @@ const SanPhamSchema = mongoose.Schema({
         type:String,
         required:true
     },
-    MAHOADON: {
+    MAHOADONKG: {
+        type:String,
+        required:true
+    },
+    MAHOADONBH: {
         type:String,
         required:true
     },
@@ -27,7 +31,15 @@ const SanPhamSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    GIA: {
+    GIANHAN: {
+        type: Number,
+        required: true
+    },
+    HOAHONG: {
+        type: Number,
+        required: true
+    },
+    TIENKHACHNHAN: {
         type: Number,
         required: true
     },

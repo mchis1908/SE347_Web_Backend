@@ -13,9 +13,14 @@ const SanPham = {
             res.status(500).json(error)
         }
     },
-    GetaProduct: async (req, res) => {
+    GetSanPhambyMaKyGui: async (req, res) => {
         const { maHD } = req.params;
-        const data = await SanPhamModel.find({ MAHOADON: maHD })
+        const data = await SanPhamModel.find({ MAHOADONKG: maHD })
+        res.send(data)
+    },
+    GetSanPhambyMaBanHang: async (req, res) => {
+        const { maHD } = req.params;
+        const data = await SanPhamModel.find({ MAHOADONBH: maHD })
         res.send(data)
     },
     GetSanPham: async (req, res) => {
@@ -44,18 +49,9 @@ const SanPham = {
     UpdateSanPhambyMaHD: async (req, res) => {
         const { maHD } = req.params;
         try {
-            const SP = await SanPhamModel.updateMany({ MAHOADON: maHD }, req.body);
+            const SP = await SanPhamModel.updateMany({ MAHOADONKG: maHD }, req.body);
             await SP.save();
             res.send(SP);
-        } catch (error) {
-            res.status(500).send(error);
-        }
-    },
-    DeleteSanPham: async (req, res) => {
-        try {
-            const SP = await SanPhamModel.findByIdAndDelete(req.params.id, req.body);
-            if (!SP) res.status(404).send("Không tìm thấy dữ liệu");
-            res.status(200).send();
         } catch (error) {
             res.status(500).send(error);
         }

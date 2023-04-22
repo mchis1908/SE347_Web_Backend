@@ -18,6 +18,11 @@ const HoaDon = {
             res.status(500).json(error)
         }
     },
+    GetHoaDon_bymahd: async (req, res) => {
+        const { maHD } = req.params;
+        const data = await HoaDonModel.find({ MAHOADON: maHD })
+        res.send(data)
+    },
     UpdateHoaDon: async (req, res) => {
         try {
             const HD = await HoaDonModel.findByIdAndUpdate(req.params.id, req.body);

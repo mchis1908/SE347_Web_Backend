@@ -18,9 +18,15 @@ const KhachHang = {
             res.status(500).json(error)
         }
     },
+    GetKhachHangbySDT: async (req, res) => {
+        const { sdt } = req.params;
+        const data = await KhachHangModel.find({ SDT: sdt })
+        res.send(data)
+    },
     UpdateKhachHang: async (req, res) => {
+        const { sdt } = req.params;
         try {
-            const KH = await KhachHangModel.findByIdAndUpdate(req.params.id, req.body);
+            const KH = await KhachHangModel.findOneAndUpdate({ SDT: sdt }, req.body);
             await KH.save();
             res.send(KH);
         } catch (error) {
@@ -28,10 +34,11 @@ const KhachHang = {
         }
     },
     DeleteKhachHang: async (req, res) => {
+        const { sdt } = req.params;
         try {
-            const KH = await KhachHangModel.findByIdAndDelete(req.params.id, req.body);
-            if (!KH) res.status(404).send("Không tìm thấy dữ liệu");
-            res.status(200).send();
+            const KH = await KhachHangModel.findOneAndDelete({ SDT: sdt }, req.body);
+            await KH.save();
+            res.send(KH);
         } catch (error) {
             res.status(500).send(error);
         }
