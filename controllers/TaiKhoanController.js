@@ -7,7 +7,7 @@ const TaiKhoan = {
             await taikhoan.save()
             res.status(200).json(taikhoan)
         } catch (error) {
-            res.status(500).json(error)
+            res.status(501).json(error)
         }
     },
     GetTaiKhoan: async (req, res) => {
@@ -27,13 +27,17 @@ const TaiKhoan = {
             res.status(500).send(error);
         }
     },
-    DeleteTaiKhoan: async (req, res) => {
+    DeleteTaiKhoanbySDT: async (req, res) => {
+        const {sdt} = req.params;
         try {
-            const TK = await TaiKhoanModel.findByIdAndDelete(req.params.id, req.body);
-            if (!TK) res.status(404).send("Không tìm thấy dữ liệu");
-            res.status(200).send();
-        } catch (error) {
-            res.status(500).send(error);
+          const SoDienThoai = await TaiKhoanModel.findOneAndDelete({ SDT: sdt });
+          if (!SoDienThoai) {
+            return res.status(404).json({ message: 'Không tìm thấy tài khoản' });
+          }
+          return res.status(200).json({ message: 'Xóa tài khoản thành công' });
+        } catch (err) {
+          console.error(err.message);
+          return res.status(500).json({ message: 'Lỗi server' });
         }
     },
     SearchTaiKhoan: async (req, res) => {

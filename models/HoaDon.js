@@ -25,6 +25,10 @@ const HoaDonSchema = mongoose.Schema({
     NGAYTAODON: {
         type: String,
     },
+    NGAYTHANHTOAN: {
+        type: String,
+        default:'',
+    },
     
 }, { timestamps: true });
 

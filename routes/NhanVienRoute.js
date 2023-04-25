@@ -3,7 +3,7 @@ const router = require('express').Router()
 
 router.post('/themnhanvien', NhanVienController.DangKyNhanVien);
 router.get('/getnhanvien', NhanVienController.GetNhanVien)
-router.delete('/deletenhanvien/:id', NhanVienController.DeleteNhanVien)
+router.delete('/deletenhanvien/:sdt', NhanVienController.DeleteNhanVienbySDT)
 router.patch('/updatenhanvien/:id', NhanVienController.UpdateNhanVien)
 router.get('/search/:key', NhanVienController.SearchNhanVien);
 

@@ -24,8 +24,9 @@ const HoaDon = {
         res.send(data)
     },
     UpdateHoaDon: async (req, res) => {
+        const { maHD } = req.params;
         try {
-            const HD = await HoaDonModel.findByIdAndUpdate(req.params.id, req.body);
+            const HD = await HoaDonModel.updateMany({ MAHOADON: maHD }, req.body);
             await HD.save();
             res.send(HD);
         } catch (error) {

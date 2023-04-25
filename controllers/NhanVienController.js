@@ -7,7 +7,7 @@ const NhanVien = {
             await NhanVien.save()
             res.status(200).json(NhanVien)
         } catch (error) {
-            res.status(500).json(error)
+            res.status(502).json(error)
         }
     },
     GetNhanVien: async (req, res) => {
@@ -27,13 +27,17 @@ const NhanVien = {
             res.status(500).send(error);
         }
     },
-    DeleteNhanVien: async (req, res) => {
+    DeleteNhanVienbySDT: async (req, res) => {
+        const {sdt} = req.params;
         try {
-            const NV = await NhanVienModel.findByIdAndDelete(req.params.id, req.body);
-            if (!NV) res.status(404).send("Không tìm thấy dữ liệu");
-            res.status(200).send();
-        } catch (error) {
-            res.status(500).send(error);
+          const SoDienThoai = await NhanVienModel.findOneAndDelete({ SDT: sdt });
+          if (!SoDienThoai) {
+            return res.status(404).json({ message: 'Không tìm thấy nhân viên' });
+          }
+          return res.status(200).json({ message: 'Xóa nhân viên thành công' });
+        } catch (err) {
+          console.error(err.message);
+          return res.status(500).json({ message: 'Lỗi server' });
         }
     },
     SearchNhanVien: async (req, res) => {

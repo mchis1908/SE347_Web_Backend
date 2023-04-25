@@ -15,8 +15,13 @@ const TaiKhoanSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    MANV: {
+    TENNV: {
         type: String,
+        ref:'NhanVien'
+    },
+    SDT: {
+        type: String,
+        unique: true,
         ref:'NhanVien'
     }
 }, { timestamps: true })

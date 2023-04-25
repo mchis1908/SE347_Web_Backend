@@ -46,7 +46,7 @@ const SanPham = {
             res.status(500).send(error);
         }
     },
-    UpdateSanPhambyMaHD: async (req, res) => {
+    UpdateSanPhambyMaHDKG: async (req, res) => {
         const { maHD } = req.params;
         try {
             const SP = await SanPhamModel.updateMany({ MAHOADONKG: maHD }, req.body);
