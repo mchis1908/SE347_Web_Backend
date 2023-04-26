@@ -15,7 +15,7 @@ const BaoCaoSPNgayRoute = require("./routes/BaoCaoSPNgayRoute");
 const BaoCaoSPThangRoute = require("./routes/BaoCaoSPThangRoute");
 
 const app = express();
-mongoose.connect('mongodb+srv://MinhChis19:Mhchi1908@cluster0.xqsjeav.mongodb.net/planB?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://20521130:Mhchi1908@cluster0.grutkvs.mongodb.net/DoAn1?retryWrites=true&w=majority', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => {

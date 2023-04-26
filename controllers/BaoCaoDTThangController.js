@@ -30,6 +30,18 @@ const BaoCaoDTThang = {
             res.status(500).send(error);
         }
     },
+    GetBaoCaoDTThangbyYear: async (req, res) => {
+        const { year } = req.params;
+        try {
+            const BC = await BaoCaoDTThangModel.find({ THOIGIAN: { $regex: `${year}$` } }, req.body);
+            if (!BC) {
+                return res.status(404).json({ message: 'Không tìm thấy báo cáo' });
+            }
+            res.send(BC);
+        } catch (error) {
+            res.status(500).send(error);
+        }
+    },
     UpdateBaoCaoDTThang: async (req, res) => {
         const { tg } = req.params;
         try {
