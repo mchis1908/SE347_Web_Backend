@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const uniqueValidator = require('mongoose-unique-validator');
 
-const BaoCaoSPNhanBanSchema = mongoose.Schema({
+const BaoCaoSPThangSchema = mongoose.Schema({
     THOIGIAN: {
         type:String,
         unique: true,
@@ -17,6 +17,6 @@ const BaoCaoSPNhanBanSchema = mongoose.Schema({
     },
 })
 
-BaoCaoSPNhanBanSchema.plugin(uniqueValidator);
-const BaoCaoSPNhanBan = mongoose.model('BaoCaoSPNhanBan',BaoCaoSPNhanBanSchema);
-module.exports = BaoCaoSPNhanBan;
+BaoCaoSPThangSchema.plugin(uniqueValidator);
+const BaoCaoSPThang = mongoose.model('BaoCaoSPThang',BaoCaoSPThangSchema);
+module.exports = BaoCaoSPThang;

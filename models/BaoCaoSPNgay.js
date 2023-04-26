@@ -1,22 +1,22 @@
 const mongoose = require('mongoose')
 const uniqueValidator = require('mongoose-unique-validator');
 
-const BaoCaoHDNgaySchema = mongoose.Schema({
+const BaoCaoSPNgaySchema = mongoose.Schema({
     THOIGIAN: {
         type:String,
         unique: true,
         required:true
     },
-    SLHOADONKYGUI: {
+    SLSANPHAMNHAN: {
         type: Number,
         required: true
     },
-    SLHOADONBANHANG: {
+    SLSANPHAMBAN: {
         type: Number,
         required: true
     },
 })
 
-BaoCaoHDNgaySchema.plugin(uniqueValidator);
-const BaoCaoHDNgay = mongoose.model('BaoCaoHDNgay',BaoCaoHDNgaySchema);
-module.exports = BaoCaoHDNgay;
+BaoCaoSPNgaySchema.plugin(uniqueValidator);
+const BaoCaoSPNgay = mongoose.model('BaoCaoSPNgay',BaoCaoSPNgaySchema);
+module.exports = BaoCaoSPNgay;

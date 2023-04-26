@@ -4,12 +4,15 @@ const uniqueValidator = require('mongoose-unique-validator');
 const BaoCaoDTThangSchema = mongoose.Schema({
     THOIGIAN: {
         type:String,
-        unique: true,
         required:true
     },
     DOANHTHU: {
         type: Number,
         required: true
+    },
+    SANPHAM: {
+        type: [],
+        default:[]
     }
 })
 

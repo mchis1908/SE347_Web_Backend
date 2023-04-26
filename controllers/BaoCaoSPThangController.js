@@ -1,27 +1,27 @@
-const BaoCaoDTThangModel = require('../models/BaoCaoDTThang')
+const BaoCaoSPThangModel = require('../models/BaoCaoSPThang')
 
-const BaoCaoDTThang = {
-    DangKyBaoCaoDTThang: async (req, res) => {
-        const BaoCaoDTThang = new BaoCaoDTThangModel(req.body)
+const BaoCaoSPThang = {
+    DangKyBaoCaoSPThang: async (req, res) => {
+        const BaoCaoSPThang = new BaoCaoSPThangModel(req.body)
         try {
-            await BaoCaoDTThang.save()
-            res.status(200).json(BaoCaoDTThang)
+            await BaoCaoSPThang.save()
+            res.status(200).json(BaoCaoSPThang)
         } catch (error) {
             res.status(500).json(error)
         }
     },
-    GetBaoCaoDTThang: async (req, res) => {
-        const NV = await BaoCaoDTThangModel.find({});
+    GetBaoCaoSPThang: async (req, res) => {
+        const NV = await BaoCaoSPThangModel.find({});
         try {
             res.status(200).json(NV)
         } catch (error) {
             res.status(500).json(error)
         }
     },
-    GetBaoCaoDTThangbyDay: async (req, res) => {
-        const { day } = req.params;
+    GetBaoCaoSPThangbyMonth: async (req, res) => {
+        const { month } = req.params;
         try {
-            const BC = await BaoCaoDTThangModel.findOne({ THOIGIAN: day }, req.body);
+            const BC = await BaoCaoSPThangModel.findOne({ THOIGIAN: month }, req.body);
             if (!BC) {
                 return res.status(404).json({ message: 'Không tìm thấy báo cáo' });
             }
@@ -30,10 +30,10 @@ const BaoCaoDTThang = {
             res.status(500).send(error);
         }
     },
-    UpdateBaoCaoDTThang: async (req, res) => {
+    UpdateBaoCaoSPThang: async (req, res) => {
         const { tg } = req.params;
         try {
-            const SP = await BaoCaoDTThangModel.findOneAndUpdate({ THOIGIAN: tg }, req.body);
+            const SP = await BaoCaoSPThangModel.findOneAndUpdate({ THOIGIAN: tg }, req.body);
             if (!SP) {
                 return res.status(404).json({ message: 'Không tìm thấy báo cáo' });
               }
@@ -46,4 +46,4 @@ const BaoCaoDTThang = {
     }
 }
 
-module.exports = BaoCaoDTThang
+module.exports = BaoCaoSPThang

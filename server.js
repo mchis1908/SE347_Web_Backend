@@ -11,8 +11,8 @@ const SanPhamRoute = require("./routes/SanPhamRoute");
 const TaiKhoanRoute = require("./routes/TaiKhoanRoute");
 const ThamSoRoute = require("./routes/ThamSoRoute");
 const BaoCaoDTThangRoute = require("./routes/BaoCaoDTThangRoute");
-const BaoCaoHDNgayRoute = require("./routes/BaoCaoHDNgayRoute");
-const BaoCaoSPNhanBanRoute = require("./routes/BaoCaoSPNhanBanRoute");
+const BaoCaoSPNgayRoute = require("./routes/BaoCaoSPNgayRoute");
+const BaoCaoSPThangRoute = require("./routes/BaoCaoSPThangRoute");
 
 const app = express();
 mongoose.connect('mongodb+srv://MinhChis19:Mhchi1908@cluster0.xqsjeav.mongodb.net/planB?retryWrites=true&w=majority', {
@@ -39,8 +39,8 @@ app.use("/v1/sanpham", SanPhamRoute);
 app.use("/v1/taikhoan", TaiKhoanRoute);
 app.use("/v1/thamso", ThamSoRoute);
 app.use("/v1/baocaodtthang", BaoCaoDTThangRoute);
-app.use("/v1/baocaohdngay", BaoCaoHDNgayRoute);
-app.use("/v1/baocaospnhanban", BaoCaoSPNhanBanRoute);
+app.use("/v1/baocaospngay", BaoCaoSPNgayRoute);
+app.use("/v1/baocaospthang", BaoCaoSPThangRoute);
 
 app.listen(8000, () => {
   console.log('Server is listening on port 8000');

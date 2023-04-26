@@ -1,27 +1,27 @@
-const BaoCaoDTThangModel = require('../models/BaoCaoDTThang')
+const BaoCaoSPNgayModel = require('../models/BaoCaoSPNgay')
 
-const BaoCaoDTThang = {
-    DangKyBaoCaoDTThang: async (req, res) => {
-        const BaoCaoDTThang = new BaoCaoDTThangModel(req.body)
+const BaoCaoSPNgay = {
+    DangKyBaoCaoSPNgay: async (req, res) => {
+        const BaoCaoSPNgay = new BaoCaoSPNgayModel(req.body)
         try {
-            await BaoCaoDTThang.save()
-            res.status(200).json(BaoCaoDTThang)
+            await BaoCaoSPNgay.save()
+            res.status(200).json(BaoCaoSPNgay)
         } catch (error) {
             res.status(500).json(error)
         }
     },
-    GetBaoCaoDTThang: async (req, res) => {
-        const NV = await BaoCaoDTThangModel.find({});
+    GetBaoCaoSPNgay: async (req, res) => {
+        const NV = await BaoCaoSPNgayModel.find({});
         try {
             res.status(200).json(NV)
         } catch (error) {
             res.status(500).json(error)
         }
     },
-    GetBaoCaoDTThangbyDay: async (req, res) => {
+    GetBaoCaoSPNgaybyDay: async (req, res) => {
         const { day } = req.params;
         try {
-            const BC = await BaoCaoDTThangModel.findOne({ THOIGIAN: day }, req.body);
+            const BC = await BaoCaoSPNgayModel.findOne({ THOIGIAN: day }, req.body);
             if (!BC) {
                 return res.status(404).json({ message: 'Không tìm thấy báo cáo' });
             }
@@ -30,10 +30,10 @@ const BaoCaoDTThang = {
             res.status(500).send(error);
         }
     },
-    UpdateBaoCaoDTThang: async (req, res) => {
+    UpdateBaoCaoSPNgay: async (req, res) => {
         const { tg } = req.params;
         try {
-            const SP = await BaoCaoDTThangModel.findOneAndUpdate({ THOIGIAN: tg }, req.body);
+            const SP = await BaoCaoSPNgayModel.findOneAndUpdate({ THOIGIAN: tg }, req.body);
             if (!SP) {
                 return res.status(404).json({ message: 'Không tìm thấy báo cáo' });
               }
@@ -46,4 +46,4 @@ const BaoCaoDTThang = {
     }
 }
 
-module.exports = BaoCaoDTThang
+module.exports = BaoCaoSPNgay
