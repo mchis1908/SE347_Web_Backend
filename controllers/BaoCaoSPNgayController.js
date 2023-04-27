@@ -1,4 +1,5 @@
 const BaoCaoSPNgayModel = require('../models/BaoCaoSPNgay')
+const moment = require('moment');
 
 const BaoCaoSPNgay = {
     DangKyBaoCaoSPNgay: async (req, res) => {
@@ -19,13 +20,38 @@ const BaoCaoSPNgay = {
         }
     },
     GetBaoCaoSPNgaybyDay: async (req, res) => {
-        const { day } = req.params;
+    const { day } = req.params;
+    try {
+        const BC = await BaoCaoSPNgayModel.findOne({ THOIGIAN: day }, req.body);
+        if (!BC) {
+            return res.status(404).json({ message: 'Không tìm thấy báo cáo' });
+        }
+        res.send(BC);
+        } catch (error) {
+            res.status(500).send(error);
+    }
+    },
+    GetBaoCaoSPNgaybyMonth: async (req, res) => {
+        const { year, month } = req.params;
+        
+        // Tạo đối tượng moment từ năm và tháng được truyền vào
+        const startOfMonth = moment(`${month}-${year}`, 'M-YYYY').startOf('month');
+        const endOfMonth = moment(`${month}-${year}`, 'M-YYYY').endOf('month');
+        
         try {
-            const BC = await BaoCaoSPNgayModel.findOne({ THOIGIAN: day }, req.body);
-            if (!BC) {
-                return res.status(404).json({ message: 'Không tìm thấy báo cáo' });
+            const BC = await BaoCaoSPNgayModel.find({
+            THOIGIAN: {
+                $gte: startOfMonth.toDate(),
+                $lte: endOfMonth.toDate()
             }
+            });
+        
+            if (BC.length === 0) {
+            return res.status(404).json({ message: 'Không tìm thấy báo cáo' });
+            }
+        
             res.send(BC);
+        
         } catch (error) {
             res.status(500).send(error);
         }
