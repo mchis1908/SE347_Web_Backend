@@ -1,4 +1,5 @@
 const KhachHangModel = require('../models/KhachHang')
+const moment = require('moment');
 
 const KhachHang = {
     DangKyKhachHang: async (req, res) => {
@@ -7,7 +8,7 @@ const KhachHang = {
             await KhachHang.save()
             res.status(200).json(KhachHang)
         } catch (error) {
-            res.status(500).json(error)
+            res.status(502).json(error)
         }
     },
     GetKhachHang: async (req, res) => {

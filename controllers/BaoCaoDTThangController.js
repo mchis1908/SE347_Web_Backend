@@ -10,14 +10,6 @@ const BaoCaoDTThang = {
             res.status(500).json(error)
         }
     },
-    GetBaoCaoDTThang: async (req, res) => {
-        const NV = await BaoCaoDTThangModel.find({});
-        try {
-            res.status(200).json(NV)
-        } catch (error) {
-            res.status(500).json(error)
-        }
-    },
     GetBaoCaoDTThangbyDay: async (req, res) => {
         const { day } = req.params;
         try {

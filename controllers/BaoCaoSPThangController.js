@@ -10,14 +10,6 @@ const BaoCaoSPThang = {
             res.status(500).json(error)
         }
     },
-    GetBaoCaoSPThang: async (req, res) => {
-        const NV = await BaoCaoSPThangModel.find({});
-        try {
-            res.status(200).json(NV)
-        } catch (error) {
-            res.status(500).json(error)
-        }
-    },
     GetBaoCaoSPThangbyMonth: async (req, res) => {
         const { month } = req.params;
         try {
