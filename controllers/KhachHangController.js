@@ -31,7 +31,7 @@ const KhachHang = {
             await KH.save();
             res.send(KH);
         } catch (error) {
-            res.status(500).send(error);
+            res.status(502).send(error);
         }
     },
     DeleteKhachHang: async (req, res) => {

@@ -19,12 +19,13 @@ const NhanVien = {
         }
     },
     UpdateNhanVien: async (req, res) => {
+        const { sdt } = req.params;
         try {
-            const NV = await NhanVienModel.findByIdAndUpdate(req.params.id, req.body);
-            await NV.save();
-            res.send(NV);
+            const KH = await NhanVienModel.findOneAndUpdate({ SDT: sdt }, req.body);
+            await KH.save();
+            res.send(KH);
         } catch (error) {
-            res.status(500).send(error);
+            res.status(502).send(error);
         }
     },
     DeleteNhanVienbySDT: async (req, res) => {
