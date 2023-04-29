@@ -20,7 +20,7 @@ const HoaDon = {
     },
     GetHoaDon_bymahd: async (req, res) => {
         const { maHD } = req.params;
-        const data = await HoaDonModel.find({ MAHOADON: maHD })
+        const data = await HoaDonModel.findOne({ MAHOADON: maHD })
         res.send(data)
     },
     UpdateHoaDon: async (req, res) => {

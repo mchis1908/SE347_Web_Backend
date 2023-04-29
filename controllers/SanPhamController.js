@@ -56,10 +56,10 @@ const SanPham = {
             res.status(500).send(error);
         }
     },
-    DeleteSanPhambymaHD: async (req, res) => {
+    DeleteSanPhambymaHDKG: async (req, res) => {
         const {maHD} = req.params;
         try {
-          const sanPham = await SanPhamModel.deleteMany({ MAHOADON: maHD });
+          const sanPham = await SanPhamModel.deleteMany({ MAHOADONKG: maHD });
           if (!sanPham) {
             return res.status(404).json({ message: 'Không tìm thấy sản phẩm' });
           }
