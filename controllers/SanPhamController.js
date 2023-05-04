@@ -70,12 +70,21 @@ const SanPham = {
         }
     },
     SearchSanPham: async (req, res) => {
-        const data = await SanPhamModel.find({
-            "$or": [
-                { TENSP: { $regex: req.params.key, $options: 'i' } }
-            ]
-        })
-        res.send(data)
+        const { masp } = req.params;
+        try {
+          const SP = await SanPhamModel.find({
+            $or: [
+              { MASANPHAM: { $regex: masp, $options: 'i' } },
+              { TENSANPHAM: { $regex: masp, $options: 'i' } },
+              { MAHOADONKG: { $regex: masp, $options: 'i' } },
+              { MAHOADONBH: { $regex: masp, $options: 'i' } },
+            //   { GIANHAN: { $regex: masp, $options: 'i' } },
+            ],
+          });
+          res.send(SP);
+        } catch (error) {
+          res.status(500).send(error);
+        }
     }
 }
 

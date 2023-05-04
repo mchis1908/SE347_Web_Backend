@@ -47,6 +47,20 @@ const TaiKhoan = {
             ]
         })
         res.send(data)
+    },
+    SearchTaiKhoanbysk: async (req, res) => {
+        const { sk } = req.params;
+        try {
+          const tk = await TaiKhoanModel.find({
+            $or: [
+              { TENTAIKHOAN: { $regex: sk, $options: 'i' } },
+              { TENNV: { $regex: sk, $options: 'i' } },
+            ],
+          });
+          res.send(tk);
+        } catch (error) {
+          res.status(500).send(error);
+        }
     }
 }
 

@@ -5,6 +5,6 @@ router.post('/themnhanvien', NhanVienController.DangKyNhanVien);
 router.get('/getnhanvien', NhanVienController.GetNhanVien)
 router.delete('/deletenhanvien/:sdt', NhanVienController.DeleteNhanVienbySDT)
 router.patch('/updatenhanvien/:sdt', NhanVienController.UpdateNhanVien)
-router.get('/search/:key', NhanVienController.SearchNhanVien);
+router.get('/searchnhanvien/:sk', NhanVienController.SearchNhanVien);
 
 module.exports = router

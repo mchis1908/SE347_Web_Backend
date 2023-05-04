@@ -10,6 +10,6 @@ router.get('/getsanphambymabanhang/:maHD', SanPhamController.GetSanPhambyMaBanHa
 router.delete('/deletesanphambymahdkg/:maHD', SanPhamController.DeleteSanPhambymaHDKG)
 router.patch('/updatesanpham/:maSP', SanPhamController.UpdateSanPham)
 router.patch('/updatesanphambymahd/:maHD', SanPhamController.UpdateSanPhambyMaHDKG)
-router.get('/search/:key', SanPhamController.SearchSanPham);
+router.get('/searchsanpham/:masp', SanPhamController.SearchSanPham);
 
 module.exports = router

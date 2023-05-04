@@ -45,12 +45,18 @@ const KhachHang = {
         }
     },
     SearchKhachHang: async (req, res) => {
-        const data = await KhachHangModel.find({
-            "$or": [
-                { HOTEN: { $regex: req.params.key, $options: 'i' } }
-            ]
-        })
-        res.send(data)
+        const { sdt } = req.params;
+        try {
+          const KH = await KhachHangModel.find({
+            $or: [
+              { SDT: { $regex: sdt, $options: 'i' } },
+              { HOTEN: { $regex: sdt, $options: 'i' } },
+            ],
+          });
+          res.send(KH);
+        } catch (error) {
+          res.status(500).send(error);
+        }
     }
 }
 

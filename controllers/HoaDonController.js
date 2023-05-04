@@ -43,12 +43,18 @@ const HoaDon = {
         }
     },
     SearchHoaDon: async (req, res) => {
-        const data = await HoaDonModel.find({
-            "$or": [
-                { MAHOADON: { $regex: req.params.key, $options: 'i' } }
-            ]
-        })
-        res.send(data)
+        const { mahd } = req.params;
+        try {
+          const HD = await HoaDonModel.find({
+            $or: [
+              { SDT: { $regex: mahd, $options: 'i' } },
+              { MAHOADON: { $regex: mahd, $options: 'i' } },
+            ],
+          });
+          res.send(HD);
+        } catch (error) {
+          res.status(500).send(error);
+        }
     }
 }
 

@@ -42,12 +42,19 @@ const NhanVien = {
         }
     },
     SearchNhanVien: async (req, res) => {
-        const data = await NhanVienModel.find({
-            "$or": [
-                { HOTEN: { $regex: req.params.key, $options: 'i' } }
-            ]
-        })
-        res.send(data)
+        const { sk } = req.params;
+        try {
+          const NV = await NhanVienModel.find({
+            $or: [
+              { HOTEN: { $regex: sk, $options: 'i' } },
+              { SDT: { $regex: sk, $options: 'i' } },
+              { EMAIL: { $regex: sk, $options: 'i' } },
+            ],
+          });
+          res.send(NV);
+        } catch (error) {
+          res.status(500).send(error);
+        }
     }
 }
 
