@@ -3,6 +3,6 @@ const router = require('express').Router()
 
 router.post('/themThoiGianLamViec', ThoiGianLamViecController.DangKyThoiGianLamViec);
 router.get('/getThoiGianLamViecbyTG/:tg', ThoiGianLamViecController.GetThoiGianLamViecbyThoiGian)
-router.patch('/updateThoiGianLamViec/:id', ThoiGianLamViecController.UpdateThoiGianLamViec)
+router.patch('/updateThoiGianLamViec/:tg', ThoiGianLamViecController.UpdateThoiGianLamViec)
 
 module.exports = router

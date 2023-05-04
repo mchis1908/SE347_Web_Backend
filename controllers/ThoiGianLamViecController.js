@@ -31,10 +31,14 @@ const ThoiGianLamViec = {
         }
     },
     UpdateThoiGianLamViec: async (req, res) => {
+        const { tg } = req.params;
         try {
-            const NV = await ThoiGianLamViecModel.findByIdAndUpdate(req.params.id, req.body);
-            await NV.save();
-            res.send(NV);
+            const BC = await ThoiGianLamViecModel.findOneAndUpdate({ THOIGIAN: { $regex: `${tg}$` } }, req.body);
+            await BC.save();
+            // if (BC.length === 0) {
+            //     return res.status(404).json({ message: 'Không tìm thấy lịch' });
+            // }
+            res.send(BC);
         } catch (error) {
             res.status(500).send(error);
         }
