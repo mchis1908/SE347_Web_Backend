@@ -5,7 +5,6 @@ const bodyParser = require('body-parser');
 const DoanhThuRoute = require("./routes/DoanhThuRoute");
 const HoaDonRoute = require("./routes/HoaDonRoute");
 const KhachHangRoute = require("./routes/KhachHangRoute");
-const LuongRoute = require("./routes/ThoiGianLamViecRoute");
 const NhanVienRoute = require("./routes/NhanVienRoute");
 const SanPhamRoute = require("./routes/SanPhamRoute");
 const TaiKhoanRoute = require("./routes/TaiKhoanRoute");
@@ -14,6 +13,7 @@ const BaoCaoDTThangRoute = require("./routes/BaoCaoDTThangRoute");
 const BaoCaoSPNgayRoute = require("./routes/BaoCaoSPNgayRoute");
 const BaoCaoSPThangRoute = require("./routes/BaoCaoSPThangRoute");
 const ThoiGianLamViecRoute = require("./routes/ThoiGianLamViecRoute");
+const LuongRoute = require("./routes/LuongRoute");
 
 const app = express();
 mongoose.connect('mongodb+srv://20521130:Mhchi1908@cluster0.grutkvs.mongodb.net/DoAn1?retryWrites=true&w=majority', {
@@ -43,6 +43,7 @@ app.use("/v1/baocaodtthang", BaoCaoDTThangRoute);
 app.use("/v1/baocaospngay", BaoCaoSPNgayRoute);
 app.use("/v1/baocaospthang", BaoCaoSPThangRoute);
 app.use("/v1/thoigianlamviec", ThoiGianLamViecRoute);
+app.use("/v1/luong", LuongRoute);
 
 app.listen(8000, () => {
   console.log('Server is listening on port 8000');
