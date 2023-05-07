@@ -23,6 +23,14 @@ const HoaDon = {
         const data = await HoaDonModel.findOne({ MAHOADON: maHD })
         res.send(data)
     },
+    GetHoaDonBanHang_bythoigian: async (req, res) => {
+        const { tg } = req.params;
+        const data = await HoaDonModel.find({ $and: [{ NGAYTAODON: { $regex: tg, $options: 'i' } }, { LOAI: "Bán hàng" }] });
+        if (data.length === 0) {
+            return res.status(404).json({ message: 'Không tìm thấy lịch' });
+        }
+        res.send(data);
+    },
     UpdateHoaDon: async (req, res) => {
         const { maHD } = req.params;
         try {
