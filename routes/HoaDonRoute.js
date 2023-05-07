@@ -8,6 +8,5 @@ router.get('/gethoadonbanhangbytg/:tg', HoaDonController.GetHoaDonBanHang_bythoi
 router.delete('/deletehoadon/:id', HoaDonController.DeleteHoaDon)
 router.patch('/updatehoadon/:maHD', HoaDonController.UpdateHoaDon)
 router.get('/searchhoadon/:mahd', HoaDonController.SearchHoaDon);
-router.patch('/updatehoadon1', HoaDonController.UpdateHoaDon1)
 
 module.exports = router
