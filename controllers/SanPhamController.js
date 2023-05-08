@@ -56,6 +56,19 @@ const SanPham = {
             res.status(500).send(error);
         }
     },
+    DeleteSanPhambymaSP: async (req, res) => {
+        const {maSP} = req.params;
+        try {
+          const sanPham = await SanPhamModel.findOneAndDelete({ MASANPHAM: maSP });
+          if (!sanPham) {
+            return res.status(404).json({ message: 'Không tìm thấy sản phẩm' });
+          }
+          return res.status(200).json({ message: 'Xóa sản phẩm thành công' });
+        } catch (err) {
+          console.error(err.message);
+          return res.status(500).json({ message: 'Lỗi server' });
+        }
+    },
     DeleteSanPhambymaHDKG: async (req, res) => {
         const {maHD} = req.params;
         try {

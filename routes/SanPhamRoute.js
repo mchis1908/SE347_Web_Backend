@@ -8,6 +8,7 @@ router.get('/getsanpham/:maSP', SanPhamController.GetSanPhambyMaSanPham)
 router.get('/getsanphambymakygui/:maHD', SanPhamController.GetSanPhambyMaKyGui)
 router.get('/getsanphambymabanhang/:maHD', SanPhamController.GetSanPhambyMaBanHang)
 router.delete('/deletesanphambymahdkg/:maHD', SanPhamController.DeleteSanPhambymaHDKG)
+router.delete('/deletesanphambymasp/:maSP', SanPhamController.DeleteSanPhambymaSP)
 router.patch('/updatesanpham/:maSP', SanPhamController.UpdateSanPham)
 router.patch('/updatesanphambymahd/:maHD', SanPhamController.UpdateSanPhambyMaHDKG)
 router.get('/searchsanpham/:masp', SanPhamController.SearchSanPham);

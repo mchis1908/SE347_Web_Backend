@@ -31,6 +31,10 @@ const HoaDon = {
         }
         res.send(data);
     },
+    GetHoaDonKyGui_bytrangthai: async (req, res) => {
+        const data = await HoaDonModel.find({ TRANGTHAI: "Chưa thanh toán", LOAI:"Ký gửi" })
+        res.send(data)
+    },
     UpdateHoaDon: async (req, res) => {
         const { maHD } = req.params;
         try {
