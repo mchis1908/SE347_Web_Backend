@@ -19,8 +19,9 @@ const TaiKhoan = {
         }
     },
     UpdateTaiKhoan: async (req, res) => {
+        const {sdt} = req.params;
         try {
-            const TK = await TaiKhoanModel.findByIdAndUpdate(req.params.id, req.body);
+            const TK = await TaiKhoanModel.findOneAndUpdate({ SDT: sdt }, req.body);
             await TK.save();
             res.send(TK);
         } catch (error) {
