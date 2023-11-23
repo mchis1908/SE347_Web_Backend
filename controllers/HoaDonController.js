@@ -35,7 +35,7 @@ const HoaDon = {
         const data = await HoaDonModel.find({ TRANGTHAI: "Chưa thanh toán", LOAI:"Ký gửi" })
         res.send(data)
     },
-    GetHoaDonKyByKhachHang: async (req, res) => {
+    GetHoaDonByKhachHang: async (req, res) => {
         try {
             const { sdtKhachHang } = req.params;
             const regex = new RegExp(`^${sdtKhachHang}`);
@@ -46,7 +46,7 @@ const HoaDon = {
             res.status(500).send("Internal Server Error");
         }
     },
-    GetHoaDonKyByMAHDKhachHang: async (req, res) => {
+    GetHoaDonByMAHDKhachHang: async (req, res) => {
         try {
             const { sdtKhachHang, maHD  } = req.params;
             const regex = new RegExp(`^${sdtKhachHang}`);
