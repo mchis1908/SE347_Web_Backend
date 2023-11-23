@@ -46,6 +46,17 @@ const HoaDon = {
             res.status(500).send("Internal Server Error");
         }
     },
+    GetHoaDonKyByMAHDKhachHang: async (req, res) => {
+        try {
+            const { sdtKhachHang, maHD  } = req.params;
+            const regex = new RegExp(`^${sdtKhachHang}`);
+            const data = await HoaDonModel.find({ $and: [{ SDT: { $regex: regex } }, { MAHOADON: maHD}]});
+            res.send(data);
+        } catch (error) {
+            console.error(error);
+            res.status(500).send("Internal Server Error");
+        }
+    },
     UpdateHoaDon: async (req, res) => {
         const { maHD } = req.params;
         try {
