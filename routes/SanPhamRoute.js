@@ -5,6 +5,7 @@ const upload = require("../models/middleware/uploadImage");
 router.post('/themsanpham', upload.single("HINHANH"), SanPhamController.DangKySanPham);
 router.get('/getsanpham', SanPhamController.GetSanPham)
 router.get('/getsanpham/:maSP', SanPhamController.GetSanPhambyMaSanPham)
+router.get('/getsanphambytrangthai/:trangthai', SanPhamController.GetSanPhamByTrangThai)
 router.get('/getsanphambymakygui/:maHD', SanPhamController.GetSanPhambyMaKyGui)
 router.get('/getsanphambymabanhang/:maHD', SanPhamController.GetSanPhambyMaBanHang)
 router.delete('/deletesanphambymahdkg/:maHD', SanPhamController.DeleteSanPhambymaHDKG)

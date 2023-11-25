@@ -31,6 +31,33 @@ const SanPham = {
             res.status(500).json(error)
         }
     },
+    GetSanPhamByTrangThai: async (req, res) => {
+        const { trangthai } = req.params;
+        const searchkey = req.query.searchkey;
+        try {
+            let SanPham;
+            if (searchkey!=='') {
+                SanPham = await SanPhamModel.find({
+                $and: [
+                    { TRANGTHAI: trangthai },
+                    {
+                    $or: [
+                        { MASANPHAM: { $regex: searchkey, $options: 'i' } },
+                        { TENSANPHAM: { $regex: searchkey, $options: 'i' } },
+                    ],
+                    },
+                ],
+                });
+            } else {
+                SanPham = await SanPhamModel.find({ TRANGTHAI: trangthai });
+            }
+
+            res.send(SanPham);
+        } catch (error) {
+            console.error(error);
+            res.status(500).send('Internal Server Error');
+        }
+    },
     GetSanPhambyMaSanPham: async (req, res) => {
         const { maSP } = req.params;
         const data = await SanPhamModel.findOne({ MASANPHAM: maSP })
