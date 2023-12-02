@@ -89,6 +89,21 @@ const HoaDon = {
         } catch (error) {
           res.status(500).send(error);
         }
+    },
+    SearchHoaDonKhachHang: async (req, res) => {
+        const { sdtKhachHang, mahd } = req.params;
+        try {
+            const regex = new RegExp(`^${sdtKhachHang}`);
+            const HD = await HoaDonModel.find({
+                $and: [
+                    {SDT: { $regex: regex}},
+                    { MAHOADON: { $regex: mahd, $options: 'i' }},
+                ],
+            });
+          res.send(HD);
+        } catch (error) {
+          res.status(500).send(error);
+        }
     }
 }
 

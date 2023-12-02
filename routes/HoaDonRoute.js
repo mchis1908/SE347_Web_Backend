@@ -11,5 +11,6 @@ router.get('/gethoadonbykhachhang/:sdtKhachHang/:maHD', HoaDonController.GetHoaD
 router.delete('/deletehoadon/:id', HoaDonController.DeleteHoaDon)
 router.patch('/updatehoadon/:maHD', HoaDonController.UpdateHoaDon)
 router.get('/searchhoadon/:mahd', HoaDonController.SearchHoaDon);
+router.get('/searchhoadonbykhachhang/:sdtKhachHang/:mahd', HoaDonController.SearchHoaDonKhachHang);
 
 module.exports = router

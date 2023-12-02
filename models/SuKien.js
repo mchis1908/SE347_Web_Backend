@@ -17,6 +17,10 @@ const SuKienSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    MOTA: {
+        type: String,
+        required: true
+    },
 })
 SuKienSchema.plugin(uniqueValidator);
 const SuKien = mongoose.model('SuKien',SuKienSchema);
