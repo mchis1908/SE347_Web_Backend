@@ -32,26 +32,21 @@ const SanPham = {
         }
     },
     GetSanPhamByTrangThai: async (req, res) => {
-        const { trangthai } = req.params;
+        const { trangthai, min, max } = req.params;
         const searchkey = req.query.searchkey;
+        const loai = req.query.loai;
         try {
-            let SanPham;
-            if (searchkey!=='') {
-                SanPham = await SanPhamModel.find({
-                $and: [
-                    { TRANGTHAI: trangthai },
-                    {
-                    $or: [
-                        { MASANPHAM: { $regex: searchkey, $options: 'i' } },
-                        { TENSANPHAM: { $regex: searchkey, $options: 'i' } },
-                    ],
-                    },
-                ],
-                });
-            } else {
-                SanPham = await SanPhamModel.find({ TRANGTHAI: trangthai });
+            let query = { TRANGTHAI: trangthai, GIANHAN: { $gte: min, $lte: max } };
+            if (searchkey !== '') {
+                query.$or = [
+                    { MASANPHAM: { $regex: searchkey, $options: 'i' } },
+                    { TENSANPHAM: { $regex: searchkey, $options: 'i' } },
+                ];
             }
-
+            if (loai !== '') {
+                query.LOAI = loai;
+            }
+            const SanPham = await SanPhamModel.find(query);
             res.send(SanPham);
         } catch (error) {
             console.error(error);
@@ -110,14 +105,14 @@ const SanPham = {
         }
     },
     SearchSanPham: async (req, res) => {
-        const { masp } = req.params;
+        const { sk} = req.params;
         try {
           const SP = await SanPhamModel.find({
             $or: [
-              { MASANPHAM: { $regex: masp, $options: 'i' } },
-              { TENSANPHAM: { $regex: masp, $options: 'i' } },
-              { MAHOADONKG: { $regex: masp, $options: 'i' } },
-              { MAHOADONBH: { $regex: masp, $options: 'i' } },
+              { MASANPHAM: { $regex: sk, $options: 'i' } },
+              { TENSANPHAM: { $regex: sk, $options: 'i' } },
+              { MAHOADONKG: { $regex: sk, $options: 'i' } },
+              { MAHOADONBH: { $regex: sk, $options: 'i' } },
             //   { GIANHAN: { $regex: masp, $options: 'i' } },
             ],
           });
@@ -125,7 +120,7 @@ const SanPham = {
         } catch (error) {
           res.status(500).send(error);
         }
-    }
+    },
 }
 
 module.exports = SanPham
