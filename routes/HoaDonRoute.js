@@ -6,11 +6,9 @@ router.get('/gethoadon', HoaDonController.GetHoaDon)
 router.get('/gethoadon/:maHD', HoaDonController.GetHoaDon_bymahd)
 router.get('/gethoadonbanhangbytg/:tg', HoaDonController.GetHoaDonBanHang_bythoigian)
 router.get('/gethoadonkyguibytt', HoaDonController.GetHoaDonKyGui_bytrangthai)
-router.get('/gethoadonbykhachhang/:sdtKhachHang', HoaDonController.GetHoaDonByKhachHang)
-router.get('/gethoadonbykhachhang/:sdtKhachHang/:maHD', HoaDonController.GetHoaDonByMAHDKhachHang)
+router.get('/gethoadonbykhachhang/:sdtKhachHang', HoaDonController.GetHoaDonKhachHang);
 router.delete('/deletehoadon/:id', HoaDonController.DeleteHoaDon)
 router.patch('/updatehoadon/:maHD', HoaDonController.UpdateHoaDon)
 router.get('/searchhoadon/:mahd', HoaDonController.SearchHoaDon);
-router.get('/searchhoadonbykhachhang/:sdtKhachHang/:mahd', HoaDonController.SearchHoaDonKhachHang);
 
 module.exports = router

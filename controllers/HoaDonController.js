@@ -46,17 +46,6 @@ const HoaDon = {
             res.status(500).send("Internal Server Error");
         }
     },
-    GetHoaDonByMAHDKhachHang: async (req, res) => {
-        try {
-            const { sdtKhachHang, maHD  } = req.params;
-            const regex = new RegExp(`^${sdtKhachHang}`);
-            const data = await HoaDonModel.find({ $and: [{ SDT: { $regex: regex } }, { MAHOADON: maHD}]});
-            res.send(data);
-        } catch (error) {
-            console.error(error);
-            res.status(500).send("Internal Server Error");
-        }
-    },
     UpdateHoaDon: async (req, res) => {
         const { maHD } = req.params;
         try {
@@ -90,19 +79,24 @@ const HoaDon = {
           res.status(500).send(error);
         }
     },
-    SearchHoaDonKhachHang: async (req, res) => {
-        const { sdtKhachHang, mahd } = req.params;
+    GetHoaDonKhachHang: async (req, res) => {
+        const { sdtKhachHang } = req.params;
+        const searchkey = req.query.searchkey;
+        const loai = req.query.loai;
         try {
             const regex = new RegExp(`^${sdtKhachHang}`);
-            const HD = await HoaDonModel.find({
-                $and: [
-                    {SDT: { $regex: regex}},
-                    { MAHOADON: { $regex: mahd, $options: 'i' }},
-                ],
-            });
-          res.send(HD);
+            let query = { SDT: { $regex: regex }};
+            if (loai !== '') {
+                query.LOAI = loai;
+            }
+            if (searchkey !== '') {
+                query.MAHOADON = { $regex: searchkey, $options: 'i' };
+            }
+            const HD = await HoaDonModel.find(query);
+            res.send(HD);
         } catch (error) {
-          res.status(500).send(error);
+            console.error(error);
+            res.status(500).send('Internal Server Error');
         }
     }
 }
